@@ -52,7 +52,7 @@ export const rebirthData = [
     tier: "Rebirth 8",
     badge: "R8",
     money: "$10,000,000,000",
-    fish: ["Weefish", "Grooty"],
+    fish: ["Weerfish", "Grooty"],
     rewards: ["+4 Swim Speed", "+30 Backpack Space", "+0.30x Cash Multiplier"]
   },
   {
