@@ -22,16 +22,40 @@ const quickCards = [
 /* ── FAQ Data ── */
 const faqItems = [
   {
-    q: "Why is there only one rarity column now?",
-    a: "The overlapping PGG entries were removed, so the page now uses the Sportskeeda rarity list as the main rarity reference."
+    q: "When do Secrets and Divines spawn?",
+    a: "Secret spawns are completely random. By collecting fish in that area, it increases the chance of a Secret or Divine to spawn!"
   },
   {
-    q: "What does a blank rarity mean?",
-    a: "A blank value means the remaining database entry did not include a rarity for that fish in the data you provided."
+    q: "Is there a cooldown on Secret or Divine spawns?",
+    a: "No, there is no cooldown timers for Secret or Divine fish to spawn."
   },
   {
-    q: "Which zones are newly added here?",
-    a: "This version includes the original early zones plus Aqua Forest, Shell Reef, and Kraken World, along with full expanded fish tables for all listed biomes."
+    q: "Will I lose all my fish or money if I Rebirth?",
+    a: "No! You do not lose anything when you rebirth other than the money and fish required for each rebirth."
+  },
+  {
+    q: "When is Admin Abuse?",
+    a: "Admin abuse is before updates. They will be announced in this Discord."
+  },
+  {
+    q: "Do mutations stack? Can I get more than one mutation on a fish?",
+    a: "No, currently fish can only have one mutation. Example: If your fish has Rainbow, gold, or silver, it cannot receive other mutations like chocolate, shocked, or frozen."
+  },
+  {
+    q: "Can I trade fish?",
+    a: "Trading is not currently in the game. Currently, the only way to transfer fish from one person to another is to steal it using Robux."
+  },
+  {
+    q: "I followed the steps to get my group reward fish, why haven't I received it yet?",
+    a: "Receiving your group reward can take a few minutes. Be patient, and you will receive it in no time."
+  },
+  {
+    q: "Are there any Codes for Dive Down?",
+    a: "No, there are currently no codes, but that is one of the many things our Dev Team is working on!"
+  },
+  {
+    q: "How do I get more Secrets to spawn?",
+    a: "Catching fish in the area you want a secret to spawn in rapidly increases the chances of secrets to spawn."
   }
 ];
 
