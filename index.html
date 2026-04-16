@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dive Down | Ultimate Game Guide</title>
+  <link rel="icon" type="image/png" href="./photos/Logo Side menu.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="root" style="display:none"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-left">
+      <button class="hdr-btn menu-toggle" id="menuToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <a href="#" class="logo-link" id="logoLink">
+        <img src="./photos/Logo Side menu.png" alt="Dive Down">
+        <span class="logo-text">Dive Down Guide</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <button class="hdr-btn" id="searchToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="https://www.roblox.com/games/131756752872026/Dive-Down" target="_blank" rel="noopener" class="roblox-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="6.5" width="14" height="12" rx="2"/></svg>
+        Play on Roblox
+      </a>
+    </div>
+  </header>
+
+  <!-- Search dropdown -->
+  <div class="search-drop" id="searchDrop">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" class="search-input" id="headerSearch" placeholder="Search fish, zone, rebirth, upgrade..." autocomplete="off">
+      <div class="search-results" id="headerResults"></div>
+    </div>
+  </div>
+
+  <!-- Backdrop + Sidebar -->
+  <div class="backdrop" id="backdrop"></div>
+  <aside class="sidebar" id="sidebar">
+    <nav id="sidebarNav"></nav>
+  </aside>
+
+  <!-- ═══════ HOME PAGE ═══════ -->
+  <main id="pageHome">
+    <section id="home" class="hero">
+      <div class="hero-bg" style="background-image:url(https://static.prod-images.emergentagent.com/jobs/b453fa35-5837-49a0-a139-620d07c28b27/images/de3f012b96552f100de9e54c023680da94412c37d26b612e3b7a1db0d0a19b58.png)"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Merged fish database</p>
+        <h1>Dive Down Guide</h1>
+        <p>Track every known biome catch from Sunlight Zone to Kraken World and plan your next deep-sea farming route with the current Sportskeeda rarity list.</p>
+        <div class="hero-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="search" id="heroSearch" placeholder="Search fish, zone, rebirth, upgrade..." autocomplete="off">
+          <div class="search-results" id="heroResults"></div>
+        </div>
+        <div id="statPills" class="stat-pills"></div>
+      </div>
+    </section>
+
+    <div class="quick-cards">
+      <a href="#database" class="qcard">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12.5c0-2.2 1.8-4 4-4h4.8a4.2 4.2 0 0 1 3.4 1.8l1.6 2.2-1.6 2.2a4.2 4.2 0 0 1-3.4 1.8H8c-2.2 0-4-1.8-4-4Z"/>
+            <path d="M6 10.2 3.8 8.7M6 14.8l-2.2 1.5M18.5 11.1 21 9.8M18.5 13.1 21 14.4"/>
+            <circle cx="9" cy="11.8" r=".8" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="title">Fish Database</div>
+        <div class="desc">Browse all fish by zone</div>
+      </a>
+      <a href="#zones-container" class="qcard">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s6-4.8 6-10a6 6 0 1 0-12 0c0 5.2 6 10 6 10Z"/>
+            <circle cx="12" cy="11" r="2.2"/>
+          </svg>
+        </div>
+        <div class="title">Zones</div>
+        <div class="desc">Navigate biome zones</div>
+      </a>
+      <a href="#mutation-guide" class="qcard">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 6.5 13H11L10 22l6.5-11H13z"/>
+          </svg>
+        </div>
+        <div class="title">Mutations</div>
+        <div class="desc">Multiplier reference</div>
+      </a>
+      <a href="#" class="qcard" id="qcardRebirth">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 7v5h-5"/>
+            <path d="M4 17v-5h5"/>
+            <path d="M7.5 8.5A7 7 0 0 1 20 12"/>
+            <path d="M16.5 15.5A7 7 0 0 1 4 12"/>
+          </svg>
+        </div>
+        <div class="title">Rebirth Guide</div>
+        <div class="desc">Permanent upgrades</div>
+      </a>
+      <a href="#tips" class="qcard">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18h6"/>
+            <path d="M10 21h4"/>
+            <path d="M8.8 14.6A6 6 0 1 1 15.2 14.6c-.9.8-1.4 1.6-1.6 2.4h-3.2c-.2-.8-.7-1.6-1.6-2.4Z"/>
+          </svg>
+        </div>
+        <div class="title">Tips & Tricks</div>
+        <div class="desc">Farming strategies</div>
+      </a>
+      <a href="#faq" class="qcard">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9.5 9.3a2.8 2.8 0 0 1 5 1.7c0 1.8-2.2 2.3-2.5 4"/>
+            <circle cx="12" cy="17.4" r=".8" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="title">FAQs</div>
+        <div class="desc">Common questions</div>
+      </a>
+    </div>
+
+    <section id="database" class="section">
+      <div class="section-head"><h2>Fish Database</h2><div class="line"></div></div>
+      <p class="muted mb-sm">This database includes biome fish, special event fish, Kraken egg fish, and mutation multipliers.</p>
+      <p class="muted mb-lg">Use it to track rarities, special spawns, and high-value mutation rolls in one place.</p>
+      <div class="gallery-wrap"><div class="gallery-track" id="galleryTrack"></div></div>
+
+      <div id="mutation-guide" class="section-inner">
+        <h3 class="h3">Mutation Multipliers</h3>
+        <div class="mutation-grid">
+          <div class="mutation-card"><h4>Ocean Mutation</h4>
+            <div class="mut-row"><span>Rainbow</span><strong>3.0x</strong></div><div class="mut-row"><span>Gold</span><strong>2.7x</strong></div><div class="mut-row"><span>Silver</span><strong>2.4x</strong></div><div class="mut-row"><span>Normal</span><strong>1.0x</strong></div>
+          </div>
+          <div class="mutation-card"><h4>Weather Mutation</h4>
+            <div class="mut-row"><span>Evil</span><strong>2.8x</strong></div><div class="mut-row"><span>Magma</span><strong>2.5x</strong></div><div class="mut-row"><span>Infected</span><strong>2.3x</strong></div><div class="mut-row"><span>Chocolate</span><strong>2.2x</strong></div><div class="mut-row"><span>Shocked</span><strong>1.9x</strong></div><div class="mut-row"><span>Frozen</span><strong>1.5x</strong></div><div class="mut-row"><span>Dry</span><strong>1.1x</strong></div>
+          </div>
+        </div>
+      </div>
+      <div id="zones-container"></div>
+    </section>
+
+    <section id="tips" class="section">
+      <div class="section-head"><h2>Tips & Tricks</h2><div class="line"></div></div>
+      <div class="tips-grid">
+        <div class="tip-card"><h3>Zone Farming</h3><p>Farm by zone instead of diving randomly. Each biome has its own fish pool, so targeted runs are much more efficient.</p></div>
+        <div class="tip-card"><h3>Check Rarity Conflicts</h3><p>When the two sources disagree, treat the fish as a priority to verify in-game before planning a long grind around it.</p></div>
+        <div class="tip-card"><h3>Late-Game Route</h3><p>Push your upgrades before farming Deep Dark, Trenches, Atlantis, Shell Reef, and Kraken World to avoid wasted dives.</p></div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="section-head"><h2>Frequently Asked Questions</h2><div class="line"></div></div>
+      <div id="faqList" class="faq-list"></div>
+    </section>
+
+    <footer class="site-footer"><p>Dive Down Guide by Monaco_m2</p><a href="https://www.roblox.com/games/131756752872026/Dive-Down" target="_blank" rel="noopener">Play Dive Down on Roblox</a></footer>
+  </main>
+
+  <!-- ═══════ REBIRTH PAGE ═══════ -->
+  <main id="pageRebirth" style="display:none">
+    <section class="hero">
+      <div class="hero-bg" style="background-image:url(https://static.prod-images.emergentagent.com/jobs/b453fa35-5837-49a0-a139-620d07c28b27/images/8660c19ab54846626332e04560296368613eb7a2bec3d1adf564b4da5fb5ceb5.png)"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <a href="#" class="back-link" id="rebirthBack">&larr; Back to Fish Database</a>
+        <p class="eyebrow">Permanent progression</p>
+        <h1>Rebirth Guide</h1>
+        <p>Rebirthing in Dive Down gives permanent upgrades without wiping your overall progress. You keep your money, gear, and fish outside of the fish and money consumed by each rebirth requirement.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2>How Rebirth Works</h2><div class="line"></div></div>
+      <div class="tips-grid">
+        <div class="tip-card"><h3>No Full Reset</h3><p>Unlike many games, rebirth does not reset your whole account. It only uses the fish and money required for that rebirth tier.</p></div>
+        <div class="tip-card"><h3>Permanent Perks</h3><p>Each rebirth increases swim speed, backpack space, and your cash multiplier, making every next farm route faster and richer.</p></div>
+        <div class="tip-card"><h3>Plan Ahead</h3><p>Save the required fish before spending or selling them so you can chain rebirths more efficiently when your money is ready.</p></div>
+      </div>
+    </section>
+
+    <section id="rebirth-list" class="section">
+      <div class="section-head"><h2>Rebirth Requirements & Perks</h2><div class="line"></div></div>
+      <div class="rebirth-grid" id="rebirthContainer"></div>
+    </section>
+
+    <section id="rebirth-totals" class="section">
+      <div class="section-head"><h2>Final Totals</h2><div class="line"></div></div>
+      <div class="totals-card">
+        <p class="muted mb-lg">Complete all rebirths to gain these permanent bonuses.</p>
+        <div class="totals-grid">
+          <div class="total-stat"><div class="lbl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Swim Speed</div><strong>+28</strong></div>
+          <div class="total-stat"><div class="lbl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>Backpack Space</div><strong>+225</strong></div>
+          <div class="total-stat"><div class="lbl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Cash Multiplier</div><strong>+2.25x</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer"><p>Dive Down Guide by Monaco_m2</p><a href="#" id="rebirthFooterBack">Back to Fish Database</a></footer>
+  </main>
+
+  <button class="scroll-top" id="scrollTop">&#x2191;</button>
+  <script src="./app.js"></script>
+</body>
+</html>
+
