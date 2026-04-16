@@ -53,7 +53,13 @@ Frontend-first rebuild of existing Dive Down Guide site (Roblox game guide). Kee
 - Updated FAQ to 9 new questions (secrets, divines, rebirth, mutations, trading, etc.)
 - 100% test pass rate
 
-## Testing Status
+### Iteration 3 - Fish Info Tooltips on Rebirth Page
+- Added FishTooltip component with triangle pointer popup
+- Hovering (desktop) or clicking (mobile) on any required fish name shows fish info card
+- Tooltip layout: fish picture on top, name in middle, rarity on left, location on right
+- Viewport-aware positioning prevents clipping on mobile
+- All 10 rebirth cards have interactive fish links
+- 100% test pass rate
 - Iteration 1: 98% (17/17 major features, 1 minor overlap fixed)
 - Iteration 2: 100% (9/9 new features verified)
 
