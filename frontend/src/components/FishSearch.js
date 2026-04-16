@@ -82,10 +82,17 @@ const FishSearch = ({ onResultClick }) => {
                   key={`${entry.zone}-${entry.fish}`}
                   data-testid={`search-result-${i}`}
                   onClick={() => handleResultClick(entry)}
-                  className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left border-b border-white/5 last:border-b-0 hover:bg-white/5 transition-colors"
+                  className="w-full flex items-center gap-3 px-4 py-3 text-left border-b border-white/5 last:border-b-0 hover:bg-white/5 transition-colors"
                 >
+                  <img
+                    src={entry.icon}
+                    alt={entry.fish}
+                    className="w-7 h-7 object-contain rounded-sm flex-shrink-0"
+                    loading="lazy"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
                   <span className="text-sm font-medium text-white truncate">{entry.fish}</span>
-                  <span className={`inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider ${getRarityClass(entry.rarity)}`}>
+                  <span className={`inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider flex-shrink-0 ${getRarityClass(entry.rarity)}`}>
                     {entry.rarity}
                   </span>
                   <span className="text-xs text-zinc-500 truncate ml-auto">{entry.zone}</span>

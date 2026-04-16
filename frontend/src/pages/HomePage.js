@@ -81,6 +81,17 @@ const FaqItem = ({ q, a }) => {
   );
 };
 
+/* ── Fish Icon ── */
+const FishIcon = ({ entry }) => (
+  <img
+    src={entry.icon}
+    alt={entry.fish}
+    className="w-8 h-8 object-contain rounded-sm flex-shrink-0"
+    loading="lazy"
+    onError={(e) => { e.target.style.display = 'none'; }}
+  />
+);
+
 /* ── Zone Card ── */
 const ZoneCard = ({ zone, fishList }) => {
   const zoneId = slugify(zone);
@@ -96,7 +107,7 @@ const ZoneCard = ({ zone, fishList }) => {
             <tr className="border-b border-white/20">
               <th className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 bg-black/40">Fish Name</th>
               <th className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 bg-black/40">Rarity</th>
-              <th className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 bg-black/40">Notes</th>
+              <th className="text-left px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 bg-black/40 hidden sm:table-cell">Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -107,13 +118,18 @@ const ZoneCard = ({ zone, fishList }) => {
                 className="border-b border-white/5 hover:bg-white/[0.03] transition-colors"
                 data-testid={`fish-row-${slugify(entry.fish)}`}
               >
-                <td className="px-5 py-3 font-medium text-white">{entry.fish}</td>
-                <td className="px-5 py-3">
+                <td className="px-5 py-2.5">
+                  <div className="flex items-center gap-3">
+                    <FishIcon entry={entry} />
+                    <span className="font-medium text-white">{entry.fish}</span>
+                  </div>
+                </td>
+                <td className="px-5 py-2.5">
                   <span className={`inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider ${getRarityClass(entry.rarity)}`}>
                     {entry.rarity || "Unknown"}
                   </span>
                 </td>
-                <td className="px-5 py-3 text-zinc-400">{entry.note}</td>
+                <td className="px-5 py-2.5 text-zinc-400 hidden sm:table-cell">{entry.note}</td>
               </tr>
             ))}
           </tbody>
