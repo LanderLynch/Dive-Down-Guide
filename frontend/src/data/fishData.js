@@ -1,4 +1,9 @@
-const iconPath = (name) => `/fish-icons/${name.toLowerCase().replace(/\s+/g, "-").replace(/'/g, "")}.png`;
+import { getPublicAssetPath } from "@/lib/publicAsset";
+
+const iconPath = (name) =>
+  getPublicAssetPath(
+    `fish-icons/${name.toLowerCase().replace(/\s+/g, "-").replace(/'/g, "")}.png`,
+  );
 
 export const fishDatabase = [
   // Sunlight Zone
@@ -125,9 +130,9 @@ export const fishDatabase = [
 ];
 
 export const galleryImages = [
-  { src: "/photos/2a909-17718318971280-1920.webp", alt: "Dive Down gameplay screenshot" },
-  { src: "/photos/noFilter.webp", alt: "Dive Down underwater zone screenshot" },
-  { src: "/photos/noFilter (1).webp", alt: "Dive Down fish database screenshot" }
+  { src: getPublicAssetPath("photos/2a909-17718318971280-1920.webp"), alt: "Dive Down gameplay screenshot" },
+  { src: getPublicAssetPath("photos/noFilter.webp"), alt: "Dive Down underwater zone screenshot" },
+  { src: getPublicAssetPath("photos/noFilter (1).webp"), alt: "Dive Down fish database screenshot" }
 ];
 
 export const specialZones = new Set(["OP Kraken Egg Fish", "Limited"]);

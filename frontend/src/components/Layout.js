@@ -1,17 +1,29 @@
 import { useState, useEffect, useCallback } from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
-import { List, X, ArrowUp, MagnifyingGlass, Fish, Waves, Lightning, Question, ArrowsClockwise, GameController } from "@phosphor-icons/react";
-import { fishDatabase, slugify, getGroupedZones, specialZones } from "@/data/fishData";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  List,
+  X,
+  ArrowUp,
+  MagnifyingGlass,
+  Fish,
+  Waves,
+  Lightning,
+  Question,
+  ArrowsClockwise,
+  GameController,
+} from "@phosphor-icons/react";
+import { slugify, getGroupedZones, specialZones } from "@/data/fishData";
 import FishSearch from "@/components/FishSearch";
+import { getPublicAssetPath } from "@/lib/publicAsset";
 
 const navSections = [
-  { label: "Home", href: "/#home", icon: Waves },
-  { label: "Mutations", href: "/#mutation-guide", icon: Lightning },
+  { label: "Home", sectionId: "home", icon: Waves },
+  { label: "Mutations", sectionId: "mutation-guide", icon: Lightning },
 ];
 
 const helpLinks = [
-  { label: "Tips & Tricks", href: "/#tips", icon: Lightning },
-  { label: "FAQs", href: "/#faq", icon: Question },
+  { label: "Tips & Tricks", sectionId: "tips", icon: Lightning },
+  { label: "FAQs", sectionId: "faq", icon: Question },
 ];
 
 const Layout = () => {
@@ -19,10 +31,11 @@ const Layout = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const groupedZones = getGroupedZones();
 
-  const biomeZones = Object.keys(groupedZones).filter(z => !specialZones.has(z));
-  const special = Object.keys(groupedZones).filter(z => specialZones.has(z));
+  const biomeZones = Object.keys(groupedZones).filter((z) => !specialZones.has(z));
+  const special = Object.keys(groupedZones).filter((z) => specialZones.has(z));
 
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 400);
@@ -36,33 +49,31 @@ const Layout = () => {
   }, [location]);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
       document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
+    };
   }, [menuOpen]);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const handleNavClick = useCallback((e, href) => {
-    if (href.startsWith("/#")) {
-      const id = href.slice(2);
+  const handleSectionNav = useCallback(
+    (sectionId) => {
       if (location.pathname === "/") {
-        e.preventDefault();
-        const el = document.getElementById(id);
+        const el = document.getElementById(sectionId);
         if (el) {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
+      } else {
+        navigate("/", { state: { scrollTarget: sectionId } });
       }
-    }
-    setMenuOpen(false);
-  }, [location.pathname]);
+      setMenuOpen(false);
+    },
+    [location.pathname, navigate],
+  );
 
   return (
     <div className="min-h-screen bg-black text-white font-body">
-      {/* Header */}
       <header
         className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/15"
         data-testid="main-header"
@@ -78,7 +89,11 @@ const Layout = () => {
               {menuOpen ? <X size={20} /> : <List size={20} />}
             </button>
             <Link to="/" className="flex items-center gap-2.5" data-testid="logo-link">
-              <img src="/photos/Logo Side menu.png" alt="Dive Down" className="h-8 w-auto" />
+              <img
+                src={getPublicAssetPath("photos/Logo Side menu.png")}
+                alt="Dive Down"
+                className="h-8 w-auto"
+              />
               <span className="font-heading font-bold text-lg tracking-tight hidden sm:inline">
                 Dive Down Guide
               </span>
@@ -106,7 +121,6 @@ const Layout = () => {
           </div>
         </div>
 
-        {/* Search dropdown */}
         {searchOpen && (
           <div className="border-t border-white/10 bg-black/90 backdrop-blur-xl px-4 py-3">
             <FishSearch onResultClick={() => setSearchOpen(false)} />
@@ -114,7 +128,6 @@ const Layout = () => {
         )}
       </header>
 
-      {/* Mobile backdrop */}
       {menuOpen && (
         <div
           className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 lg:hidden"
@@ -123,85 +136,79 @@ const Layout = () => {
         />
       )}
 
-      {/* Sidebar */}
       <aside
         data-testid="sidebar"
         className={`fixed top-14 left-0 bottom-0 w-64 bg-black border-r border-white/15 z-40 overflow-y-auto transition-transform duration-200 
           ${menuOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
       >
         <nav className="p-4 space-y-1">
-          {/* Main */}
-          {navSections.map(item => (
-            <Link
+          {navSections.map((item) => (
+            <button
               key={item.label}
-              to={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
+              type="button"
+              onClick={() => handleSectionNav(item.sectionId)}
+              className="w-full text-left flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
               data-testid={`nav-${slugify(item.label)}`}
             >
               <item.icon size={16} weight="duotone" className="text-blue-500 flex-shrink-0" />
               {item.label}
-            </Link>
+            </button>
           ))}
 
-          {/* Biomes */}
           <div className="pt-4">
             <span className="block px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-2">
               Biomes
             </span>
-            {biomeZones.map(zone => (
-              <Link
+            {biomeZones.map((zone) => (
+              <button
                 key={zone}
-                to={`/#${slugify(zone)}`}
-                onClick={(e) => handleNavClick(e, `/#${slugify(zone)}`)}
-                className="flex items-center gap-2.5 px-3 py-1.5 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
+                type="button"
+                onClick={() => handleSectionNav(slugify(zone))}
+                className="w-full text-left flex items-center gap-2.5 px-3 py-1.5 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
                 data-testid={`nav-${slugify(zone)}`}
               >
                 <Fish size={14} weight="duotone" className="text-blue-500/60 flex-shrink-0" />
                 {zone}
-              </Link>
+              </button>
             ))}
           </div>
 
-          {/* Special */}
           <div className="pt-4">
             <span className="block px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-2">
               Special
             </span>
-            {special.map(zone => (
-              <Link
+            {special.map((zone) => (
+              <button
                 key={zone}
-                to={`/#${slugify(zone)}`}
-                onClick={(e) => handleNavClick(e, `/#${slugify(zone)}`)}
-                className="flex items-center gap-2.5 px-3 py-1.5 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
+                type="button"
+                onClick={() => handleSectionNav(slugify(zone))}
+                className="w-full text-left flex items-center gap-2.5 px-3 py-1.5 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
                 data-testid={`nav-${slugify(zone)}`}
               >
                 <Lightning size={14} weight="duotone" className="text-blue-500/60 flex-shrink-0" />
                 {zone}
-              </Link>
+              </button>
             ))}
           </div>
 
-          {/* Help */}
           <div className="pt-4">
             <span className="block px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-2">
               Help
             </span>
-            {helpLinks.map(item => (
-              <Link
+            {helpLinks.map((item) => (
+              <button
                 key={item.label}
-                to={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
+                type="button"
+                onClick={() => handleSectionNav(item.sectionId)}
+                className="w-full text-left flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
                 data-testid={`nav-${slugify(item.label)}`}
               >
                 <item.icon size={14} weight="duotone" className="text-blue-500/60 flex-shrink-0" />
                 {item.label}
-              </Link>
+              </button>
             ))}
           </div>
 
-          {/* More */}
           <div className="pt-4">
             <span className="block px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-2">
               More
@@ -216,19 +223,16 @@ const Layout = () => {
             </Link>
           </div>
 
-          {/* Footer */}
           <div className="pt-6 mt-4 border-t border-white/10 px-3">
             <p className="text-[11px] text-zinc-600">Created by Monaco_m2</p>
           </div>
         </nav>
       </aside>
 
-      {/* Main content */}
       <main className="lg:ml-64 pt-14 min-h-screen">
         <Outlet />
       </main>
 
-      {/* Scroll to top */}
       {showScrollTop && (
         <button
           data-testid="scroll-top-button"
