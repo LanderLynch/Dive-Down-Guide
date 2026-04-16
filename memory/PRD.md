@@ -15,18 +15,19 @@ Frontend-first rebuild of existing Dive Down Guide site (Roblox game guide). Kee
 - Repeat users searching fish, zones, rebirths, and upgrades
 
 ## Core Requirements
-- Fish database with 94+ fish across 14 zones
+- Fish database with 94 fish across 14 zones with wiki icons
 - Fish search with instant results and zone highlighting
 - Zone navigation sidebar
 - Mutation multipliers reference
 - Tips & tricks cards
-- FAQ accordion
+- FAQ accordion (9 questions)
 - Screenshot gallery carousel
 - Rebirth Guide page (10 tiers with requirements/rewards)
 - Mobile-responsive with off-canvas navigation
 - Color scheme: Black main, Blue secondary, White accent/outline
 
 ## What's Been Implemented (Jan 2026)
+### Iteration 1 - Full UI Rework
 - Full React migration from static HTML/CSS/JS
 - Complete UI redesign with black/blue/white tactical theme
 - Outfit (headings) + IBM Plex Sans (body) typography
@@ -42,15 +43,25 @@ Frontend-first rebuild of existing Dive Down Guide site (Roblox game guide). Kee
 - Rebirth page with hero, how-it-works cards, 10 rebirth cards, final totals
 - Mobile hamburger menu, backdrop, responsive layouts
 - Scroll-to-top button
-- Search highlighting (click result → scrolls and highlights zone/fish row)
-- All data-testid attributes for testing
+- Search highlighting (click result -> scrolls and highlights zone/fish row)
+
+### Iteration 2 - Fish Icons + Data Update
+- Downloaded 94 fish icons from Dive Down fandom wiki
+- Added fish icons next to every fish name in zone tables and search results
+- Updated zone names: "Ice Age" -> "The Arctic", "Megalodons Lair" -> "Megalodon's Lair"
+- Updated fish data to match user's latest list
+- Updated FAQ to 9 new questions (secrets, divines, rebirth, mutations, trading, etc.)
+- 100% test pass rate
 
 ## Testing Status
-- 98% pass rate (17/17 major features pass, 1 minor UI overlap fixed)
+- Iteration 1: 98% (17/17 major features, 1 minor overlap fixed)
+- Iteration 2: 100% (9/9 new features verified)
 
 ## Prioritized Backlog
 ### P0 (Done)
 - All core features implemented and tested
+- Fish icons from wiki
+- Updated zone names and data
 
 ### P1 (Next)
 - Active nav highlighting (highlight current section in sidebar)
@@ -63,4 +74,3 @@ Frontend-first rebuild of existing Dive Down Guide site (Roblox game guide). Kee
 - Patch/update log section
 - Saved favorites or recent searches
 - Better gallery/media previews
-- Full React migration to Next.js if needed later
