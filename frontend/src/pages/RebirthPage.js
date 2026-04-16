@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Lightning, Backpack, CurrencyDollar, PersonSimpleSwim } from "@phosphor-icons/react";
 import { rebirthData } from "@/data/rebirthData";
+import FishTooltip from "@/components/FishTooltip";
 
 const RebirthPage = () => {
   return (
@@ -66,11 +67,11 @@ const RebirthPage = () => {
           <h2 className="font-heading text-2xl font-bold tracking-tight text-white whitespace-nowrap">Rebirth Requirements & Perks</h2>
           <div className="flex-1 h-px bg-white/10" />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" data-testid="rebirth-container">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-visible" data-testid="rebirth-container">
           {rebirthData.map(rebirth => (
             <article
               key={rebirth.tier}
-              className="border border-white/15 rounded-sm p-5 bg-[#0A0A0A] hover:border-blue-500 transition-colors"
+              className="border border-white/15 rounded-sm p-5 bg-[#0A0A0A] hover:border-blue-500 transition-colors overflow-visible"
               data-testid={`rebirth-card-${rebirth.badge.toLowerCase()}`}
             >
               <div className="w-10 h-10 border border-blue-500/30 rounded-sm flex items-center justify-center text-blue-400 font-heading font-black text-sm mb-3 bg-blue-500/10">
@@ -81,7 +82,14 @@ const RebirthPage = () => {
 
               <div className="mb-3">
                 <span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-1.5">Required Fish</span>
-                <p className="text-sm text-zinc-300">{rebirth.fish.join(", ")}</p>
+                <div className="flex flex-wrap gap-x-1.5 gap-y-1">
+                  {rebirth.fish.map((fishName, idx) => (
+                    <span key={fishName} className="inline-flex items-center">
+                      <FishTooltip fishName={fishName} />
+                      {idx < rebirth.fish.length - 1 && <span className="text-zinc-600 ml-1">,</span>}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               <div>
