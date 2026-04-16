@@ -233,7 +233,7 @@ const Layout = () => {
         <button
           data-testid="scroll-top-button"
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 w-10 h-10 bg-blue-600 hover:bg-blue-500 text-white rounded-sm flex items-center justify-center transition-all shadow-lg shadow-blue-600/30"
+          className="fixed bottom-16 right-6 z-50 w-10 h-10 bg-blue-600 hover:bg-blue-500 text-white rounded-sm flex items-center justify-center transition-all shadow-lg shadow-blue-600/30"
         >
           <ArrowUp size={18} weight="bold" />
         </button>
