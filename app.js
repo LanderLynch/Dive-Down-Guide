@@ -29,6 +29,7 @@ const F = [
   ["Twilight Zone","Eel","Legendary","Required for Rebirth 3."],
   ["Twilight Zone","Seal","Legendary","Required for Rebirth 3."],
   ["Twilight Zone","Jellyfish","Mythical","First biome where Mythical fish appear."],
+  ["Twilight Zone","Dolphin","Divine","Update 8 Divine fish and new best Twilight Zone catch for beginners."],
   ["Deep Ocean","Parrotfish","Common","Baseline Deep Ocean fish."],
   ["Deep Ocean","Mahi-Mahi","Rare","Fast value catch in this biome."],
   ["Deep Ocean","Sunfish","Rare","Useful rare while farming the zone."],
@@ -96,16 +97,22 @@ const F = [
   ["OP Kraken Egg Fish","Tangle Kraken","Secret","Rare Kraken egg special."],
   ["OP Kraken Egg Fish","Sentinel Kraken","Secret","High-tier Kraken egg special."],
   ["OP Kraken Egg Fish","Crown Kraken","Divine","Top-tier Divine Kraken egg fish."],
+  ["Shark Egg","Bull Shark","Epic","Robux Shark Egg fish."],
+  ["Shark Egg","Tiger Shark","Epic","Robux Shark Egg fish."],
+  ["Shark Egg","Whale Shark","Epic","Robux Shark Egg fish."],
+  ["Shark Egg","Thresher Shark","Mythical","Robux Shark Egg fish."],
+  ["Shark Egg","Megalodon","Divine","Divine Robux Shark Egg fish."],
   ["Limited","Cake Fish","Limited","Daily Fish Event (Ended)."],
   ["Limited","Gift Fish","Limited","Daily Fish Event (Ended)."],
   ["Limited","Heart Fish","Limited","Daily Fish Event (Ended)."],
   ["Limited","Partybottle Fish","Limited","Daily Fish Event (Ended)."],
   ["Limited","Partyhat Fish","Limited","Daily Fish Event (Ended)."],
   ["Limited","Wheel Fish","Limited","Obtained from Wheel Spins."],
-  ["Limited","UsernameFish","Limited","Admin Abuse exclusive."]
+  ["Limited","UsernameFish","Limited","Admin Abuse exclusive."],
+  ["Limited","UsernameMermaid","Limited","Admin Abuse exclusive custom mermaid."]
 ].map(([zone,fish,rarity,note])=>({zone,fish,rarity,note,icon:icon(fish)}));
 
-const specials = new Set(["OP Kraken Egg Fish","Limited"]);
+const specials = new Set(["OP Kraken Egg Fish","Shark Egg","Limited"]);
 const grouped = {};
 F.forEach(e=>(grouped[e.zone]=grouped[e.zone]||[]).push(e));
 const lookup = {};
@@ -137,7 +144,15 @@ const FAQ = [
   ["How do I get more Secrets to spawn?","Catching fish in the area you want a secret to spawn in rapidly increases the chances of secrets to spawn."]
 ];
 
-const GALLERY = ["./photos/2a909-17718318971280-1920.webp","./photos/noFilter.webp","./photos/noFilter (1).webp"];
+const GALLERY = [
+  "./photos/2a909-17718318971280-1920.webp",
+  "./photos/noFilter.webp",
+  "./photos/noFilter (1).webp",
+  "./photos/wiki/game-thumbnail.png",
+  "./photos/wiki/kraken.png",
+  "./photos/wiki/free-group-fish.png",
+  "./photos/wiki/scuba-guy.png"
+];
 
 /* ═══════ PAGE SWITCHING ═══════ */
 const pageHome = document.getElementById('pageHome');
@@ -165,7 +180,7 @@ function buildSidebarHome(){
   Object.keys(grouped).filter(z=>!specials.has(z)).forEach(z=>{h+=navLink(z,'#'+slug(z));});
   h += '<div class="nav-label">Special</div>';
   Object.keys(grouped).filter(z=>specials.has(z)).forEach(z=>{h+=navLink(z,'#'+slug(z));});
-  h += '<div class="nav-label">Help</div>' + navLink('Tips & Tricks','#tips') + navLink('FAQs','#faq');
+  h += '<div class="nav-label">Help</div>' + navLink('Tips & Tricks','#tips') + navLink('Update 8 Devlog','#devlog') + navLink('FAQs','#faq');
   h += '<div class="nav-label">More</div><button class="nav-link" id="navRebirth">Rebirth Guide</button>';
   h += '<div class="nav-footer">Created by Monaco_m2</div>';
   sidebarNav.innerHTML = h;
